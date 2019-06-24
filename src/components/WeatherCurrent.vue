@@ -3,8 +3,6 @@
         <h2>Weather - Current</h2>
         <h3>{{currentWeatherData.name}}</h3>
 
-        <!-- <ul>
-            <li v-for="(item, index) in weatherData.list"> -->
         <div class="weather-current__item">
             <div class="weather-current__item-data">
                 <h2>Temperatuur</h2>

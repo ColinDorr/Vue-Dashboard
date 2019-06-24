@@ -3,8 +3,6 @@
         <h2>Weather - Rain (net 3 hours)</h2>
         <h3>{{rainWeatherData.name}}</h3>
 
-        <!-- <ul>
-            <li v-for="(item, index) in weatherData.list"> -->
         <div class="weather-forcast__item">
             <div class="weather-forcast__item-data">
                 <pre>{{rainWeatherData}}</pre>
