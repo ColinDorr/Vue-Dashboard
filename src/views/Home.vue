@@ -1,18 +1,35 @@
 <template>
   <div class="home">
     <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+
+    <WeatherCurrent />
+
+    <WeatherRain />
+
+    <NewsNu />
+    <NewsHacker />
+    <NewsFloridaMan />
+
+
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
+  import NewsNu from "@/components/NewsNu.vue";
+  import NewsHacker from "@/components/NewsHacker.vue";
+  import NewsFloridaMan from "@/components/NewsFloridaMan.vue";
 
-export default {
-  name: "home",
-  components: {
-    HelloWorld
-  }
-};
+  import WeatherCurrent from "@/components/WeatherCurrent.vue";
+  import WeatherRain from "@/components/WeatherRain.vue";
+
+  export default {
+    name: "home",
+    components: {
+      NewsNu,
+      NewsHacker,
+      NewsFloridaMan,
+      WeatherCurrent,
+      WeatherRain
+    }
+  };
 </script>
