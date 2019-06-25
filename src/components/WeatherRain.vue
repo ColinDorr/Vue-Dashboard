@@ -5,7 +5,11 @@
 
         <div class="weather-forcast__item">
             <div class="weather-forcast__item-data">
-                <pre>{{rainWeatherData}}</pre>
+                <ul>
+                    <li v-for="(item, index) in rainWeatherData">
+                        <p>{{item.time}} - {{calculateDownfall(item.rain)}} mm/u.</p>
+                    </li>
+                </ul>
             </div>
         </div>
         </li>
@@ -24,12 +28,13 @@
                 lon: 4.89
             }
         },
-        computed: {
-            calculateDownfall(value) {
-                return 10 ^ ((value - 109) / 32)
-            }
-        },
+
         methods: {
+             calculateDownfall(value) {
+                 let calculatedValue = Math.pow( 10, ((value - 109) / 32 ));
+                 calculatedValue = parseFloat(calculatedValue.toFixed(2))
+                return calculatedValue
+            },
             getRainForNext3Hours() {
                 // https://www.buienradar.nl/overbuienradar/gratis-weerdata
                 let api = `https://gpsgadget.buienradar.nl/data/raintext/?lat=${this.lat}&lon=${this.lon}`;
@@ -38,6 +43,7 @@
                         let dataContainer = []
                         this.rainWeatherData = response.data;
                         this.rainWeatherData = this.rainWeatherData.match(/.{1,9}/g);
+                        
                         this.rainWeatherData.forEach(function (element) {
                             dataContainer.push({
                                 rain: Number(element.split('|')[0]),
