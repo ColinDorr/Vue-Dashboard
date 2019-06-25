@@ -8,7 +8,9 @@
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
+@import "@/styles/global.scss";
+
   #app {
     font-family: "Avenir", Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -23,10 +25,17 @@
 
   #nav a {
     font-weight: bold;
-    color: #2c3e50;
+    color: $color-blue;
   }
 
   #nav a.router-link-exact-active {
-    color: #42b983;
+    color: $color-lime-green;
+  }
+
+h4{
+  margin: 0;
+}
+  p{
+    margin: 0;
   }
 </style>

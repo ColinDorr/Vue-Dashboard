@@ -1,6 +1,6 @@
 <template>
     <div class="weather-container__outer">
-        <h2>Weather - Rain (net 3 hours)</h2>
+        <h2>Weather - Rain (next 3 hours)</h2>
         <h3>{{rainWeatherData.name}}</h3>
 
         <div class="weather-forcast__item">
@@ -12,8 +12,6 @@
                 </ul>
             </div>
         </div>
-        </li>
-        </ul>
     </div>
 </template>
 

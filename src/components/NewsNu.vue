@@ -1,22 +1,19 @@
 <template>
   <div class="news-container__outer">
-    <h1>News - Nu.nl</h1>
+    <h1>Nieuws - Nu.nl</h1>
     <ul class="news-articles__list">
       <li v-for="(item,index) in nuData.articles" class="news-articles__list-item-container">
         <a v-if="nuData.articles[index-1] && nuData.articles[index-1].content !== item.content" :href="item.url"
           target="_blank" class="news-articles__list-item">
-          <img class="news-articles__list-item__featured-image" v-if="item.urlToImage" :src="item.urlToImage">
-          <img class="news-articles__list-item__featured-image" v-else
-            src="http://denrakaev.com/wp-content/uploads/2015/03/no-image.png">
-          <div class="news-articles__list-item__date">
-            <h4 class="item-title" v-if="item.title">
-              {{item.title}}
-              <span class="item-source">({{getSource(item.source.name)}})</span>
-            </h4>
-            <!-- <p v-if="item.content">Content: {{item.content}}</p>
-            <p v-if="item.description">Omschrijving: {{item.description}}</p>-->
-            <p class="item-date" v-if="item.publishedAt">Datum: {{item.publishedAt}}</p>
-            <!-- <p v-if="item.author">Schrijver: {{item.author}}</p> -->
+          <div class="news-article__image-container">
+            <img class="news-article__image" v-if="item.urlToImage" :src="item.urlToImage">      
+            <img class="news-article__image" v-else src="@/assets/no-image.png">
+          </div>
+          <div class="news-article__data-container">
+            <p class="news-article__item-meta">Publicatie: {{getTime(item.publishedAt)}} - {{getSource(item.source.name)}}</p>
+            <h4 class="news-article__item-title" v-if="item.title">{{item.title}}</h4>
+            <!-- <p v-if="item.content">Content: {{item.content}}</p> -->
+             <p class="news-article__item-description" v-if="item.description">Omschrijving: {{item.description}}</p>
           </div>
         </a>
       </li>
@@ -39,6 +36,12 @@
         data = data.replace("www.", "");
         data = data.charAt(0).toUpperCase() + data.slice(1);
         return data;
+      },
+      getTime(value){
+        let TimeContainer = value.split('T')[1];
+        TimeContainer = TimeContainer.substr(0,5);
+
+        return TimeContainer;
       }
     },
     mounted() {
@@ -63,57 +66,76 @@
   .news-articles__list {
     display: flex;
     flex-direction: column;
-    // max-height: calc((90px + 5px) * 3);
     overflow: auto;
   }
 
+  .news-articles__list-item-container{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
   .news-articles__list-item {
+    position: relative;
     width: 100%;
-    // max-height: 90px;
+    height: 100px;
+    overflow: hidden;
     display: flex;
     justify-content: flex-start;
     flex-wrap: wrap;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     overflow: hidden;
     color: #000;
     text-decoration: none;
 
     &:hover,
     &:focus {
-      color: #ccc;
-      text-decoration: underline;
+      .news-article__item-title{
+        text-decoration: underline;
+      }
     }
   }
 
-  .news-articles__list-item__featured-image {
-    max-width: calc(90px * 1);
-    height: calc(90px * 0.66);
-    overflow: hidden;
+  .news-article__image-container{
+    display: block;
+    position: relative;
+    width: 200px;
+    height: 100px;
   }
+.news-article__image{
+  width: 100%;
+  height: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
 
-  .news-articles__list-item__date {
-    width: calc(100% - 90px - 20px);
-    margin-left: 20px;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
+.news-article__data-container{
+  margin-left: 20px;
+  width: calc(100% - 30% - 20px);
+}
+.news-article__item-meta{
+  text-align: left;
+  font-family: 'Segoe UI', 'Tahoma', 'Geneva', 'Verdana', sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  color: rgb(116, 161, 205);
+}
+.news-article__item-title{
+  margin: 10px 0 5px 0;
+  text-align: left;
+  font-family: 'Segoe UI', 'Tahoma', 'Geneva', 'Verdana', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  color: rgb(1, 0, 80);
+}
+.news-article__item-description{
+  text-align: left;
+  font-family: 'Segoe UI', 'Tahoma', 'Geneva', 'Verdana', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  color: rgb(1, 0, 80);
+}
 
-  .item-title {
-    font-family: "Segoe UI", "Tahoma", "Geneva", "Verdana", "Arial"sans-serif;
-    font-weight: bold;
-    font-size: 18px;
-  }
-
-  .item-source {
-    color: darkcyan;
-  }
-
-  .item-date {
-    font-family: "Segoe UI", "Tahoma", "Geneva", "Verdana", "Arial"sans-serif;
-    color: darkcyan;
-    font-weight: normal;
-    font-size: 12px;
-  }
 </style>
