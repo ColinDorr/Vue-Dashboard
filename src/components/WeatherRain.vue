@@ -49,7 +49,6 @@
                             })
                         });
                         this.rainWeatherData = dataContainer
-                        console.log(dataContainer)
                     })
                     .catch(error => {
                         console.log(error)

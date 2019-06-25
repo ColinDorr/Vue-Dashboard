@@ -42,9 +42,8 @@
         TimeContainer = TimeContainer.substr(0,5);
 
         return TimeContainer;
-      }
-    },
-    mounted() {
+      },
+      getNewsData(){
       // https://newsapi.org/s/netherlands-news-api
       let newsOutlet = "www.nu.nl";
       let api = `https://newsapi.org/v2/top-headlines?country=nl&domains=${newsOutlet}&apiKey=${this.appid}`;
@@ -52,12 +51,15 @@
       this.axios
         .get(api)
         .then(response => {
-          console.log(response.data);
           this.nuData = response.data;
         })
         .catch(error => {
           console.log(error);
         });
+      }
+    },
+    mounted() {
+      this.getNewsData();
     }
   };
 </script>
