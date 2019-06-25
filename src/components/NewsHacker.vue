@@ -21,10 +21,8 @@
       this.axios
         .get(api)
         .then(response => {
-          console.log(response.data);
           this.newsData = response.data;
           this.getNewsDataItem(30)
-
         })
         .catch(error => {
           console.log(error);
@@ -55,20 +53,7 @@
            }
         });
         this.newsData = dataContainer;
-    },
-    getSingleNewsData(id){
-           let api = "https://hacker-news.firebaseio.com/v0/item/" + id + ".json?print=pretty";
-           this.axios
-            .get(api)
-            .then(response => {
-              console.log(response.data)
-              return response.data
-            })
-            .catch(error => {
-              console.log(error);
-            });
-
-    }
+      }
     },
     mounted() {
       this.getNewsDataList();

@@ -2,13 +2,15 @@
   <div class="home">
     <img alt="Vue logo" src="../assets/logo.png" />
 
-    <!-- <WeatherCurrent /> -->
+    <WeatherCurrent />
 
-    <!-- <WeatherRain /> -->
+    <WeatherRain />
 
-    <!-- <NewsNu /> -->
+    <NewsNu />
+
     <NewsHacker />
-    <!-- <NewsFloridaMan /> -->
+    
+    <NewsFloridaMan />
 
 
   </div>
