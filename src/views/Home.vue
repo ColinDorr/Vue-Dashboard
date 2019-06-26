@@ -5,7 +5,7 @@
         <div class="hero-container-fade"></div>
         <WeatherCurrent/>
 
-        <WeatherRain/>
+        <!-- <WeatherRain/> -->
       </div>
     </div>
 
@@ -50,10 +50,11 @@ export default {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  background: lightblue;
   background-image: url("../assets/hero.jpg");
   background-size: cover;
+  background-position: center;
   position: relative;
+  padding: 40px 0;
 }
 .hero-container-fade {
   position: absolute;
@@ -61,7 +62,7 @@ export default {
   top: 0;
   width: 100%;
   height: 100%;
-
+  z-index: -1;
   background: linear-gradient(
     to top,
     rgba(0, 0, 0, 0.8),

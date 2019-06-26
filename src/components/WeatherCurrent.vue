@@ -1,54 +1,64 @@
 <template>
     <div class="weather-container__outer">
-        <h2>Weather - Current</h2>
-        <h3>{{currentWeatherData.name}}</h3>
-
-        <div class="weather-current__item">
-            <div class="weather-current__item-data">
-                <h2>Temperatuur</h2>
-                <p><strong>Huidig:</strong> {{currentWeatherData.main.temp}} &deg; C</p>
-                <p><strong>Minimum:</strong> {{currentWeatherData.main.temp_min}} &deg; C</p>
-                <p><strong>Maximum:</strong> {{currentWeatherData.main.temp_max}} &deg; C</p>
-
-                <h2>Lucht</h2>
-                <p><strong>Vochtigheid:</strong> {{currentWeatherData.main.humidity}}%</p>
-                <p><strong>Druk:</strong> {{currentWeatherData.main.pressure}} hPa</p>
-
-                <h2>Wind</h2>
-                <p><strong>Snelheid:</strong> {{currentWeatherData.wind.speed}} m/s</p>
-                <p><strong>Richting:</strong> {{currentWeatherData.wind.deg}}&deg;</p>
-
-
-                <h2>Het weer</h2>
-                <ul v-for="(item, index) in currentWeatherData.weather">
-                    <li>{{item.description}} - {{item.main}}</li>
-                </ul>
+        
+        <div class="weather__current-temp__container">
+            <div class="weather__current-temp__image-container">
+                <img v-if="imageName == 'broken_clouds'" class="weather__current-temp__image" alt="broken_clouds" src="@/assets/weather-images/broken_clouds.png"/>
+                <img v-else-if="imageName == 'clear_sky'" class="weather__current-temp__image" alt="clear_sky" src="@/assets/weather-images/clear_sky.png"/>
+                <img v-else-if="imageName == 'few_clouds'" class="weather__current-temp__image" alt="few_clouds" src="@/assets/weather-images/few_clouds.png"/>
+                <img v-else-if="imageName == 'mist'" class="weather__current-temp__image" alt="mist" src="@/assets/weather-images/mist.png"/>
+                <img v-else-if="imageName == 'rain'" class="weather__current-temp__image" alt="rain" src="@/assets/weather-images/rain.png"/>
+                <img v-else-if="imageName == 'scattered_clouds'" class="weather__current-temp__image" alt="scattered_clouds" src="@/assets/weather-images/scattered_clouds.png"/>
+                <img v-else-if="imageName == 'shower_rain'" class="weather__current-temp__image" alt="shower_rain" src="@/assets/weather-images/shower_rain.png"/>
+                <img v-else-if="imageName == 'snow'" class="weather__current-temp__image" alt="snow" src="@/assets/weather-images/snow.png"/>
+                <img v-else-if="imageName == 'thunderstorm'" class="weather__current-temp__image" alt="thunderstorm" src="@/assets/weather-images/thunderstorm.png"/>
             </div>
+            <p class="weather__current-temp__temp">{{makeRoundNumber(currentWeatherData.main.temp)}} &deg; C</p>
         </div>
-        </li>
-        </ul>
+
+        <div class="weather__current-data__container">
+            <p class="weather__current-data__item"><span>Minimum:</span> {{makeRoundNumber(currentWeatherData.main.temp_min)}} &deg; C</p>
+            <p class="weather__current-data__item" ><span>Maximum:</span> {{makeRoundNumber(currentWeatherData.main.temp_max)}} &deg; C</p>
+            <p class="weather__current-data__item"><span>Vochtigheid:</span> {{makeRoundNumber(currentWeatherData.main.humidity)}}%</p>
+            <p class="weather__current-data__item"><span>Druk:</span> {{makeRoundNumber(currentWeatherData.main.pressure)}} hPa</p>
+        </div>
+
+
     </div>
 </template>
 
 <script>
     export default {
+        
         name: "WeatherCurrent",
         data() {
             return {
                 currentWeatherData: [],
                 location_id: 2759794,
-                appid: process.env.VUE_APP_WEATHER_API_KEY
+                appid: process.env.VUE_APP_WEATHER_API_KEY,
+                imageName : ""
             }
         },
+        computed:{
+            
+        },
         methods: {
+            makeRoundNumber(data){
+                return Math.round(data);
+            },
+            getMatchinImage(data){
+                let dataContainer = data.split(' ').join('_');
+                this.imageName = dataContainer;
+            },
             getCurrentWeather() {
+                let self = this;
                 let api =
                     `http://api.openweathermap.org/data/2.5/weather?id=${this.location_id}&units=metric&appid=${this.appid}`
 
                 this.axios.get(api)
                     .then((response) => {
-                        console.log(response.data)
-                        this.currentWeatherData = response.data
+                        this.currentWeatherData = response.data;
+                        this.getMatchinImage(response.data.weather[0].description);
                     })
                     .catch(error => {
                         console.log(error)
@@ -62,5 +72,71 @@
 </script>
 
 <style lang="scss" scoped>
+.weather-container__outer{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    @include tablet{
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+    }
+}
+.weather__current-temp__container{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: flex-end;
+     align-items: flex-start;
+     text-align: center;
+     margin-right: 20px;
+}
+.weather__current-temp__image-container{
+    position: relative;
+    width: 200px;
+    height: 150px;
+}
+.weather__current-temp__image{
+    width: 200px;
+    position: absolute;
+    top:50%;
+    left: 50%;
+    height: auto;
+    width: 100%;
+    transform: translate(-50%,-50%);
+}
+.weather__current-temp__temp{
+    width: 200px;
+    font-size: 36px;
+    font-weight: bold;
+    color: #fff;
+}
+
+.weather__current-data__container{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    margin-top: 10px;
+    margin-bottom: 40px;
+    @include tablet{
+        margin-bottom: 0;
+    }
+}
+.weather__current-data__item{
+    color: #fff;
+    display: inline-flex;
+    justify-content: flex-start;
+    text-align: left;
+    span{
+        width: 120px;
+        display: block;
+        font-weight: bold;
+    }
+}
 
 </style>
