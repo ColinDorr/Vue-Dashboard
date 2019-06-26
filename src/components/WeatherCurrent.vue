@@ -64,4 +64,3 @@
 <style lang="scss" scoped>
 
 </style>
-[52.3728, 4.8936]

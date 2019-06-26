@@ -1,0 +1,72 @@
+$fw-thin: 100;
+$fw-light: 300;
+$fw-regular: 400;
+$fw-medium: 500;
+$fw-semi-bold: 600;
+$fw-bold: 700;
+$fw-extra-bold: 800;
+$fw-black: 900;
+
+$ff-sans-serif: "Graphik",
+"Helvetica Neue",
+'Helvetica',
+'Roboto',
+'Arial',
+sans-serif;
+$ff-serif: "Serifa",
+'Times',
+"Times New Roman",
+serif;
+$ff-mono: "Roboto Mono",
+'Monaco',
+"Courier New",
+'Courier',
+monospace;
+
+@mixin font-graphik-regular {
+    font-family: $ff-sans-serif;
+    font-weight: $fw-regular;
+    font-style: normal;
+}
+
+@mixin font-graphik-regular-italic {
+    font-family: $ff-sans-serif;
+    font-weight: $fw-regular;
+    font-style: italic;
+}
+
+@mixin font-graphik-medium {
+    font-family: $ff-sans-serif;
+    font-weight: $fw-medium;
+    font-style: normal;
+}
+
+@mixin font-graphik-bold {
+    font-family: $ff-sans-serif;
+    font-weight: $fw-bold;
+    font-style: normal;
+}
+
+@mixin font-serifa-medium {
+    font-family: $ff-serif;
+    font-weight: $fw-medium;
+    font-style: normal;
+}
+
+@mixin font-roboto-mono-regular {
+    font-family: $ff-mono;
+    font-weight: $fw-regular;
+    font-style: normal;
+}
+
+@mixin font-roboto-mono-medium {
+    font-family: $ff-mono;
+    font-weight: $fw-medium;
+    font-style: normal;
+}
+
+@mixin font-roboto-mono-bold {
+    font-family: $ff-mono;
+    font-weight: $fw-bold;
+    font-style: normal;
+}

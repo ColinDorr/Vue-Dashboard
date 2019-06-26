@@ -1,0 +1,34 @@
+@mixin mq($width) {
+    @media only screen and (min-width: #{$width}) {
+        @content;
+    }
+}
+
+@mixin mobile-only {
+    @media #{$mobile-only} {
+        @content;
+    }
+}
+
+@mixin tablet {
+    @media #{$tablet} {
+        @content;
+    }
+}
+
+@mixin desktop {
+    @media #{$desktop} {
+        @content;
+    }
+}
+
+@mixin desktop-only {
+    @media #{$desktop-only} {
+        @content;
+    }
+}
+
+$phone-tablet-small-only: "(max-width:767px)";
+$tablet: "(min-width:768px)";
+$desktop: "(min-width:992px)";
+$desktop-only: "(min-width:992px) and (max-width:1199px)";
