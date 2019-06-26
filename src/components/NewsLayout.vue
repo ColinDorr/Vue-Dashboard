@@ -5,7 +5,22 @@
         <a :href="item.url" target="_blank" class="news-articles__list-item">
           <div class="news-article__image-container">
             <img class="news-article__image" v-if="item.image" :src="item.image">
-            <img class="news-article__image" v-else src="@/assets/no-image.png">
+            <img
+              class="news-article__image"
+              v-else-if="item.source === 'Nu.nl'"
+              src="@/assets/fallback-images/no-image-nu.jpg"
+            >
+            <img
+              class="news-article__image"
+              v-else-if="item.source === 'HackerNews'"
+              src="@/assets/fallback-images/no-image-hn.jpg"
+            >
+            <img
+              class="news-article__image"
+              v-else-if="item.source === 'r/FloridaMan'"
+              src="@/assets/fallback-images/no-image-red.jpg"
+            >
+            <img class="news-article__image" v-else src="@/assets/fallback-images/no-image.jpg">
           </div>
           <div class="news-article__data-container">
             <p class="news-article__item-meta">{{item.date}} - {{item.source}}</p>
