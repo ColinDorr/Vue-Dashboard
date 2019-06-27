@@ -5,7 +5,7 @@
         <div class="hero-container-fade"></div>
         <WeatherCurrent/>
 
-        <!-- <WeatherRain/> -->
+        <WeatherRain/>
       </div>
     </div>
 
