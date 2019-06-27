@@ -1,30 +1,23 @@
 <template>
-  <div class="weather-container__outer">
-    <h2>Weather - Rain (next 3 hours)</h2>
-    <h3>{{rainWeatherData.name}}</h3>
-
+  <div class="weather-rain-container__outer">
     <div class="weather-forcast__item">
-      <!-- <div class="weather-forcast__item-data">
-        <ul>
-          <li v-for="(item, index) in rainWeatherData">
-            <p>{{item.time}} - {{calculateDownfall(item.rain)}} mm/u.</p>
-          </li>
-        </ul>
-      </div>-->
 
       <div class="rain-grid">
         <div v-for="n in filterdRainWeatherData" class="rain-grid-item">
           <div class="rain-grid-item__markers"></div>
         </div>
-        <p class="rain-grid__water-indicator heavy">Zwaar</p>
-        <p class="rain-grid__water-indicator light">Licht</p>
-      </div>
 
-      <div class="rain-grid-results">
-        <div v-for="(item,index) in rainWeatherData" class="rain-grid-results__item">
+      <div class="rain-grid-results__outer">
+        <div class="rain-grid-results">
+          <div v-for="(item,index) in rainWeatherData" 
+            class="rain-grid-results__item" 
+            :style="'height:' + calculateDownfallStyle(item.rain) + '%'">
+          </div>
         </div>
-      </div>
-
+        </div>
+          <p class="rain-grid__water-indicator heavy">Zwaar</p>
+          <p class="rain-grid__water-indicator light">Licht</p>
+        </div>
       </div>
 
       <div class="rain-grid-times">
@@ -53,6 +46,12 @@ export default {
   },
 
   methods: {
+    calculateDownfallStyle(value){
+      let dataContainer = 0;
+      let max = 20;
+      dataContainer = ((value / max) * 100);
+      return dataContainer
+    },
     calculateDownfall(value) {
       let calculatedValue = Math.pow(10, (value - 109) / 32);
       calculatedValue = parseFloat(calculatedValue.toFixed(2));
@@ -100,10 +99,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.weather-container__outer {
+.weather-rain-container__outer {
   width: 100%;
-  padding: 40px;
-  max-width: 1000px;
+  padding: 0 40px;
+  max-width: 400px;
+  padding: 0 20px;
+  margin: 0 auto;
+  @include tablet{
+    width: calc(60% - 20px);
+    padding-right: 80px;
+    max-width: 800px;
+  }
 }
 .rain-grid {
   position: relative;
@@ -123,7 +129,7 @@ export default {
       border-right: 2px solid #fff;
     }
     &:last-of-type {
-      border: none;
+      border-right: none;
     }
   }
   .rain-grid-item__markers {
@@ -139,7 +145,7 @@ export default {
     box-sizing: border-box;
     color: #fff;
     display: block;
-    font-weight: 400;
+    font-weight: 700;
     position: absolute;
     text-shadow: rgb(95, 102, 108) 1px 1px 0px;
     &.heavy {
@@ -153,23 +159,48 @@ export default {
   }
 }
 
+.rain-grid-results__outer{
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+}
 .rain-grid-results{
   position: relative;
-  width: 100%;
-  height: 100px;
   display: flex;
   align-items: flex-end;
   flex-wrap: nowrap;
+  height: 100%;
   .rain-grid-results__item{
-    width:calc((100% / 24)  - ( (23 * 10px) / 24)  );
-    margin-right: calc((23 * 10px) / 23);
+     width:calc((100% / 12)  - ( (11 * 10px) / 12)  );
+      margin-right: calc((11 * 10px) / 11);
+      &:first-of-type{
+        margin-left: calc(((11 * 10px) / 11)/2);
+      }
+      &:last-of-type{
+        margin-right: calc(((11 * 10px) / 11)/2);
+      }
+      &:nth-of-type(even){
+      display: none;
+    }
+    @include tablet{
+      width:calc((100% / 24)  - ( (23 * 10px) / 24)  );
+      margin-right: calc((23 * 10px) / 23);
+      &:first-of-type{
+        margin-left: calc(((23 * 10px) / 11)/2);
+      }
+      &:last-of-type{
+        margin-right: calc(((23 * 10px) / 11)/2);
+      }
+      &:nth-of-type(even){
+      display: block;
+    }
+    }
+
     background: lightblue;
     height: 10px;
-    &:last-of-type{
-    // .rain-grid-results__item{
-      margin-right: 0;
-    // }
-  }
+    
   }
   
 }
@@ -178,7 +209,6 @@ export default {
 .rain-grid-times {
   position: relative;
   width: 100%;
-  height: 100px;
   display: flex;
   flex-wrap: nowrap;
   margin-top: 10px;
@@ -188,20 +218,29 @@ export default {
     width: calc(100% / 8);
     color: #fff;
     text-align: left;
-    p {
+    z-index: 2;
+    &:nth-of-type(even){
+      opacity: 0; 
+    }
+    p { 
       position: absolute;
       left: -20px;
     }
-    &:first-of-type {
-      margin: 0;
-      p {
-        left: 0;
-      }
+    &:first-of-type{
+      left: 10px;
     }
     &:last-of-type {
       width: auto;
-      p {
-        left: -40px;
+    }
+      
+    @include tablet{
+      &:last-of-type {
+        p {
+          left: -40px;
+        }
+      }
+      &:nth-of-type(even){
+        opacity: 1; 
       }
     }
   }

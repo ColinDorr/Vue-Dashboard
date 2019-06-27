@@ -1,17 +1,18 @@
 <template>
-    <div class="weather-container__outer">
+    <div class="weather-current-container__outer">
         
         <div class="weather__current-temp__container">
+            <!-- Icons made by Freepik from www.flaticon.com -->
             <div class="weather__current-temp__image-container">
-                <img v-if="imageName == 'broken_clouds'" class="weather__current-temp__image" alt="broken_clouds" src="@/assets/weather-images/broken_clouds.png"/>
-                <img v-else-if="imageName == 'clear_sky'" class="weather__current-temp__image" alt="clear_sky" src="@/assets/weather-images/clear_sky.png"/>
-                <img v-else-if="imageName == 'few_clouds'" class="weather__current-temp__image" alt="few_clouds" src="@/assets/weather-images/few_clouds.png"/>
-                <img v-else-if="imageName == 'mist'" class="weather__current-temp__image" alt="mist" src="@/assets/weather-images/mist.png"/>
-                <img v-else-if="imageName == 'rain'" class="weather__current-temp__image" alt="rain" src="@/assets/weather-images/rain.png"/>
-                <img v-else-if="imageName == 'scattered_clouds'" class="weather__current-temp__image" alt="scattered_clouds" src="@/assets/weather-images/scattered_clouds.png"/>
-                <img v-else-if="imageName == 'shower_rain'" class="weather__current-temp__image" alt="shower_rain" src="@/assets/weather-images/shower_rain.png"/>
-                <img v-else-if="imageName == 'snow'" class="weather__current-temp__image" alt="snow" src="@/assets/weather-images/snow.png"/>
-                <img v-else-if="imageName == 'thunderstorm'" class="weather__current-temp__image" alt="thunderstorm" src="@/assets/weather-images/thunderstorm.png"/>
+                <img v-if="imageName == 'broken_clouds'" class="weather__current-temp__image" alt="broken_clouds" src="@/assets/weather-images/broken_clouds.svg"/>
+                <img v-else-if="imageName == 'clear_sky'" class="weather__current-temp__image" alt="clear_sky" src="@/assets/weather-images/clear_sky.svg"/>
+                <img v-else-if="imageName == 'few_clouds'" class="weather__current-temp__image" alt="few_clouds" src="@/assets/weather-images/few_clouds.svg"/>
+                <img v-else-if="imageName == 'mist'" class="weather__current-temp__image" alt="mist" src="@/assets/weather-images/mist.svg"/>
+                <img v-else-if="imageName == 'rain'" class="weather__current-temp__image" alt="rain" src="@/assets/weather-images/rain.svg"/>
+                <img v-else-if="imageName == 'scattered_clouds'" class="weather__current-temp__image" alt="scattered_clouds" src="@/assets/weather-images/scattered_clouds.svg"/>
+                <img v-else-if="imageName == 'shower_rain'" class="weather__current-temp__image" alt="shower_rain" src="@/assets/weather-images/shower_rain.svg"/>
+                <img v-else-if="imageName == 'snow'" class="weather__current-temp__image" alt="snow" src="@/assets/weather-images/snow.svg"/>
+                <img v-else-if="imageName == 'thunderstorm'" class="weather__current-temp__image" alt="thunderstorm" src="@/assets/weather-images/thunderstorm.svg"/>
             </div>
             <p class="weather__current-temp__temp">{{makeRoundNumber(currentWeatherData.main.temp)}} &deg; C</p>
         </div>
@@ -72,17 +73,20 @@
 </script>
 
 <style lang="scss" scoped>
-.weather-container__outer{
+.weather-current-container__outer{
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     flex-direction: column;
     justify-content: center;
     width: 100%;
+    padding: 0 20px;
     @include tablet{
+        width: calc(40% - 20px);
         flex-direction: row;
         justify-content: flex-start;
         align-items: center;
+        padding-left: 80px;
     }
 }
 .weather__current-temp__container{
@@ -97,7 +101,8 @@
 .weather__current-temp__image-container{
     position: relative;
     width: 200px;
-    height: 150px;
+    height: 200px;
+    margin-bottom: 20px;
 }
 .weather__current-temp__image{
     width: 200px;

@@ -40,7 +40,6 @@ export default {
 <style lang="scss">
 .grid-container {
   width: 100%;
-  // max-width: 1200px;
   padding: 0;
   margin: 0 auto;
   box-sizing: border-box;
@@ -55,6 +54,12 @@ export default {
   background-position: center;
   position: relative;
   padding: 40px 0;
+  align-items: flex-end;
+  box-sizing: border-box;
+  align-items: center;
+  @include tablet{
+    flex-wrap: nowrap;
+  }
 }
 .hero-container-fade {
   position: absolute;
