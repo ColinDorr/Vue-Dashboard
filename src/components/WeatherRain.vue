@@ -105,6 +105,7 @@ export default {
   max-width: 400px;
   padding: 0 20px;
   margin: 0 auto;
+  z-index: 1;
   @include tablet{
     width: calc(60% - 20px);
     padding-right: 80px;

@@ -1,10 +1,10 @@
 <template>
   <div class="home">
+    <Nav></Nav>
     <div class="grid-container">
       <div class="hero-container">
         <div class="hero-container-fade"></div>
         <WeatherCurrent/>
-
         <WeatherRain/>
       </div>
     </div>
@@ -18,6 +18,8 @@
 </template>
 
 <script>
+import Nav from "@/components/NavElement.vue";
+
 import NewsNu from "@/components/NewsNu.vue";
 import NewsHacker from "@/components/NewsHacker.vue";
 import NewsFloridaMan from "@/components/NewsFloridaMan.vue";
@@ -28,6 +30,7 @@ import WeatherRain from "@/components/WeatherRain.vue";
 export default {
   name: "home",
   components: {
+    Nav,
     NewsNu,
     NewsHacker,
     NewsFloridaMan,
@@ -57,7 +60,9 @@ export default {
   align-items: flex-end;
   box-sizing: border-box;
   align-items: center;
-  @include tablet{
+  position: relative;
+
+  @include tablet {
     flex-wrap: nowrap;
   }
 }
@@ -67,12 +72,14 @@ export default {
   top: 0;
   width: 100%;
   height: 100%;
-  z-index: -1;
-  background: linear-gradient(
-    to top,
-    rgba(0, 0, 0, 0.8),
-    rgba(255, 255, 255, 0.1) 20%,
-    rgba(255, 255, 255, 0)
-  );
+  z-index: 0;
+  // background: linear-gradient(
+  //   to top,
+  //   rgba(0, 0, 0, 0.8),
+  //   rgba(255, 255, 255, 0.1) 20%,
+  //   rgba(255, 255, 255, 0)
+  // );
+  opacity: 0.8;
+  background: linear-gradient(#e66465, #9198e5);
 }
 </style>
