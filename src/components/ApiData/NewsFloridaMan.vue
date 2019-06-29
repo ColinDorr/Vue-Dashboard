@@ -1,12 +1,8 @@
 <template>
   <div class="news-container__outer">
-    <h1>News - Florida man</h1>
-
     <NewsLayout :newsItems="newsData"></NewsLayout>
   </div>
 </template>
-
-
 
 <script>
 import NewsLayout from "@/components/NewsLayout.vue";

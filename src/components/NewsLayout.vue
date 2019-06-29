@@ -55,6 +55,8 @@ export default {
   display: flex;
   flex-direction: column;
   overflow: auto;
+  margin: 0;
+  padding: 0;
 }
 
 .news-articles__list-item-container {
@@ -89,6 +91,10 @@ export default {
   position: relative;
   width: 200px;
   height: 100px;
+  display: none;
+  @include tablet{
+    display: block;
+  }
 }
 .news-article__image {
   width: 100%;
@@ -100,15 +106,21 @@ export default {
 }
 
 .news-article__data-container {
-  margin-left: 20px;
-  width: calc(100% - 30% - 20px);
+  padding-left: 20px;
+  border-left: 6px solid $color-light-blue;
+  width: 100%;
+  box-sizing: border-box;
+  @include tablet{
+    width: calc(100% - 30% - 20px);
+  }
+  
 }
 .news-article__item-meta {
   text-align: left;
   font-family: "Segoe UI", "Tahoma", "Geneva", "Verdana", sans-serif;
   font-weight: 400;
   font-size: 12px;
-  color: rgb(116, 161, 205);
+  color: $color-light-blue;
 }
 .news-article__item-title {
   margin: 10px 0 5px 0;
@@ -117,12 +129,17 @@ export default {
   font-weight: 700;
   font-size: 16px;
   color: rgb(1, 0, 80);
+  max-height: 38px;
+  @include limit-lines(2);
+
 }
 .news-article__item-description {
   text-align: left;
   font-family: "Segoe UI", "Tahoma", "Geneva", "Verdana", sans-serif;
   font-weight: 400;
   font-size: 14px;
-  color: rgb(1, 0, 80);
+  color: $color-dark-blue;
+  max-height: 35px;
+  @include limit-lines(2);
 }
 </style>

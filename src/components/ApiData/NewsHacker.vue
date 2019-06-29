@@ -1,7 +1,5 @@
 <template>
   <div class="news-container__outer">
-    <h1>News - Hackernews</h1>
-
     <NewsLayout :newsItems="newsData"></NewsLayout>
   </div>
 </template>

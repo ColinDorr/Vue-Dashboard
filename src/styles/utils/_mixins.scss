@@ -6,3 +6,12 @@
     margin: 0;
     padding: 0;
   }
+
+  @mixin limit-lines($amount) {
+    overflow: hidden;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: $amount;
+    -webkit-box-orient: vertical;
+}
