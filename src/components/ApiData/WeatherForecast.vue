@@ -1,18 +1,14 @@
 <template>
   <div class="weather-forecast-container__outer">
 
-    <ul>
-      <li v-for="(item,index) in forecastWeatherData">
-        <div class="weather-forecat__item-day">
-          <p>{{getTime(item.dt)}}</p>
-           <p>{{item.main.humidity}}</p>
+    <ul class="weather-forecast__list">
+      <li v-for="(item,index) in forecastWeatherData.list" class="weather-forecast__list-item">
+        <div class="weather-forecast__item-day">
+          <p class="item-day">{{getTime(item.dt)}}</p>
            <WeatherIcons class="weather-forecast__item-image":imageName="forecastWeatherImages[index]"></WeatherIcons>
-          <p>{{makeRoundNumber(item.main.temp_max)}}</p>
-          <p>{{makeRoundNumber(item.main.temp_min)}}</p>
-
-
+          <p class="item-max">{{makeRoundNumber(item.temp.max)}}&#176;</p>
+          <p class="item-min">{{makeRoundNumber(item.temp.min)}}&#176;</p>
         </div>
-        <!-- <pre>{{item}}</pre> -->
       </li>
     </ul>
   </div>
@@ -56,29 +52,28 @@ export default {
       let api = `http://api.openweathermap.org/data/2.5/forecast?id=${
         this.location_id
       }&units=metric&appid=${this.appid}`;
+             api = `http://api.openweathermap.org/data/2.5/forecast/daily?id=${
+        this.location_id
+      }&units=metric&appid=${this.appid}`
 
       this.axios
         .get(api)
         .then(response => {
-          this.filterForecastWeather(response.data);
+          console.log(response.data)
+          this.forecastWeatherData = response.data;
+          this.getForecastImageArray(response.data);
         })
         .catch(error => {
           console.log(error);
         });
     },
-    filterForecastWeather(data){
-      let day = "";
-      let dataContainer = [];
+    getForecastImageArray(data){
       let iconContainer = [];
-      let self = this;
-      data.list.forEach(function(element) {
-        if(element.dt_txt.split(" ")[0] !== day){
-          day = element.dt_txt.split(" ")[0];
-          dataContainer.push(element);
-          iconContainer.push(self.getMatchinImage(element.weather[0].description));
-        }
-      });
-      this.forecastWeatherData = dataContainer;
+        let self = this;
+        data.list.forEach(function(element) {
+          console.log(element.weather[0].main)
+            iconContainer.push(self.getMatchinImage(element.weather[0].icon));
+        });
       this.forecastWeatherImages = iconContainer;
     }
   },
@@ -90,8 +85,56 @@ export default {
 
 <style lang="scss" scoped>
 
+.weather-forecast-container__outer{
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+.weather-forecast__list{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  padding: 0;
+  margin: 0;
+}
+.weather-forecast__list-item{
+  display: block;
+  position: relative;
+  width: calc(100% / 7);
+}
+
+.weather-forecast__item-day{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.item-day{
+  // font-weight: bold;
+  font-size: 16px;
+  color: #fff;
+}
 .weather-forecast__item-image{
   width: 30px;
+}
+
+.item-max,
+.item-min{
+  font-size: 16px;
+  color: #fff;
+
+}
+.item-max{
+  margin-top: 3px;
+  padding-bottom: 3px;
+  border-bottom: 1px solid #fff;
+}
+.item-min{
+  padding-top: 3px;
+  color: #ddd;
 }
 
 </style>

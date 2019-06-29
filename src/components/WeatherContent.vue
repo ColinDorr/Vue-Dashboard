@@ -39,7 +39,7 @@ export default {
 <style lang="scss" scoped>
 .weather-content-container__outer{
   width: 100%;
-  background: $background-pink-purple;
+  background: $background-blue-pink;
   @include tablet{
     width: 300px;
   }

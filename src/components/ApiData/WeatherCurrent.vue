@@ -49,7 +49,7 @@ export default {
         .get(api)
         .then(response => {
           this.currentWeatherData = response.data;
-          this.getMatchinImage(response.data.weather[0].description);
+          this.getMatchinImage(response.data.weather[0].icon);
         })
         .catch(error => {
           console.log(error);
@@ -73,6 +73,7 @@ export default {
 .weather-current-container__outer{
   display: inline-block;
   margin: 0 auto;
+  width: 100%;
   max-width: 300px;
 }
 .weather-current__description-container{
@@ -96,7 +97,6 @@ export default {
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  margin-top: -30px;
 }
 .weather-current__temp-now{
   margin: 0;
@@ -105,11 +105,13 @@ export default {
   position: relative;
   width: 185px;
   text-align: right;
+  margin-right: 10px;
+  line-height: 1;
   &:after{
     content:'o';
     position: absolute;
     top: 10px;
-    right: 0;
+    right: -5px;
     font-size: 40px;
 
   }
