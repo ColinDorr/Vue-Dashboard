@@ -44,7 +44,6 @@ export default {
       });
       day = day.split(",")[0];
       day = day[0].toUpperCase() + day[1];
-      console.log(day);
       return day;
     },
     makeRoundNumber(data) {
@@ -62,7 +61,6 @@ export default {
       this.axios
         .get(api)
         .then(response => {
-          console.log(response.data);
           this.forecastWeatherData = response.data;
           this.getForecastImageArray(response.data);
         })
@@ -74,7 +72,6 @@ export default {
       let iconContainer = [];
       let self = this;
       data.list.forEach(function(element) {
-        console.log(element.weather[0].main);
         iconContainer.push(self.getMatchinImage(element.weather[0].icon));
       });
       this.forecastWeatherImages = iconContainer;
