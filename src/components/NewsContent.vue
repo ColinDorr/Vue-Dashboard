@@ -1,14 +1,12 @@
 <template>
   <div class="weather-content-container__outer content-component">
-
-    <h1>{{newsSources[activeNews]}}</h1> 
+    <h1>{{ newsSources[activeNews] }}</h1>
     <button @click="updateNewsSource('-')"><</button>
     <button @click="updateNewsSource('+')">></button>
 
     <NewsNu v-if="activeNews == 0"></NewsNu>
     <NewsHacker v-if="activeNews == 1"></NewsHacker>
     <NewsFloridaMan v-if="activeNews == 2"></NewsFloridaMan>
-
   </div>
 </template>
 
@@ -16,7 +14,6 @@
 import NewsNu from "@/components/ApiData/NewsNu.vue";
 import NewsHacker from "@/components/ApiData/NewsHacker.vue";
 import NewsFloridaMan from "@/components/ApiData/NewsFloridaMan.vue";
-
 
 export default {
   name: "NewsContent",
@@ -29,32 +26,28 @@ export default {
     return {
       activeNews: 0,
       newsSources: ["Nu.nl News", "Hacker News", "Florida Man News"]
-    }
+    };
   },
   methods: {
-    updateNewsSource(data){
+    updateNewsSource(data) {
       let datacontainer = this.activeNews;
-      if(data === "-"){
+      if (data === "-") {
         datacontainer = datacontainer - 1;
-      }
-      else if(data === "+"){
+      } else if (data === "+") {
         datacontainer = datacontainer + 1;
+      } else {
+        datacontainer = data;
       }
-      else {
-        datacontainer = data
-      }
-     this.checkNewsSource(datacontainer)
+      this.checkNewsSource(datacontainer);
     },
-    checkNewsSource(data){
+    checkNewsSource(data) {
       let max = this.newsSources.length - 1;
-       if(data < 0 ){
+      if (data < 0) {
         this.activeNews = this.newsSources.lenght - 1;
-      }
-      else if(data > max){
+      } else if (data > max) {
         this.activeNews = 0;
-      } 
-      else {
-         this.activeNews = data;
+      } else {
+        this.activeNews = data;
       }
     }
   }
@@ -62,14 +55,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.weather-content-container__outer{
+.weather-content-container__outer {
   width: 100%;
-  @include tablet{
+  @include tablet {
     box-sizing: border-box;
     width: calc(100% - 300px - 80px);
     height: 100vh;
     overflow: auto;
   }
 }
-
 </style>

@@ -22,15 +22,9 @@ export default {
     getNewsData() {
       // https://newsapi.org/s/netherlands-news-api
       let newsOutlet = "www.nu.nl";
-      let api = `https://newsapi.org/v2/top-headlines?country=nl&domains=${newsOutlet}&apiKey=${
-        this.appid
-      }`;
-      api = `https://newsapi.org/v2/everything?domains=${newsOutlet}&apiKey=${
-        this.appid
-      }`;
-      api = `https://newsapi.org/v2/top-headlines?country=nl&category=technology&apiKey=${
-        this.appid
-      }`;
+      let api = `https://newsapi.org/v2/top-headlines?country=nl&domains=${newsOutlet}&apiKey=${this.appid}`;
+      api = `https://newsapi.org/v2/everything?domains=${newsOutlet}&apiKey=${this.appid}`;
+      api = `https://newsapi.org/v2/top-headlines?country=nl&category=technology&apiKey=${this.appid}`;
 
       // https://newsapi.org/v2/top-headlines?country=nl&category=technology&apiKey=API_KEY
       let self = this;
@@ -91,5 +85,4 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

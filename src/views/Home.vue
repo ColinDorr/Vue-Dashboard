@@ -1,23 +1,12 @@
 <template>
   <div class="home">
-    
     <div class="grid-container">
-
-      
-      
       <WeatherContent></WeatherContent>
 
       <Nav></Nav>
 
       <NewsContent></NewsContent>
-
-
-
-
-
-      
     </div>
-    
   </div>
 </template>
 
@@ -27,11 +16,6 @@ import Nav from "@/components/NavElement.vue";
 import WeatherContent from "@/components/WeatherContent.vue";
 
 import NewsContent from "@/components/NewsContent.vue";
-
-
-
-
-
 
 export default {
   name: "home",

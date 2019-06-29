@@ -1,15 +1,26 @@
 <template>
   <div class="weather-current-container__outer">
     <div class="weather-current__description-container">
-       <WeatherIcons class="weather-current__description-image" :imageName="imageName"></WeatherIcons>
-       <h2 class="weather-current__description-title">{{currentWeatherData.weather[0].main}}</h2>
+      <WeatherIcons
+        class="weather-current__description-image"
+        :imageName="imageName"
+      ></WeatherIcons>
+      <h2 class="weather-current__description-title">
+        {{ currentWeatherData.weather[0].main }}
+      </h2>
     </div>
 
     <div class="weather-current__temp-container">
-      <p class="weather-current__temp-now">{{makeRoundNumber(currentWeatherData.main.temp)}}</p>
+      <p class="weather-current__temp-now">
+        {{ makeRoundNumber(currentWeatherData.main.temp) }}
+      </p>
       <div class="weather-current__temp-extra-container">
-          <p class="weather-current__temp-exta-min">{{makeRoundNumber(currentWeatherData.main.temp_min)}}&deg;</p>
-          <p class="weather-current__temp-extra-max">{{makeRoundNumber(currentWeatherData.main.temp_max)}}&deg;</p>
+        <p class="weather-current__temp-exta-min">
+          {{ makeRoundNumber(currentWeatherData.main.temp_min) }}&deg;
+        </p>
+        <p class="weather-current__temp-extra-max">
+          {{ makeRoundNumber(currentWeatherData.main.temp_max) }}&deg;
+        </p>
       </div>
     </div>
   </div>
@@ -20,7 +31,7 @@ import WeatherIcons from "@/components/ApiData/WeatherIcons.vue";
 
 export default {
   name: "WeatherCurrent",
-  components:{
+  components: {
     WeatherIcons
   },
   data() {
@@ -42,9 +53,7 @@ export default {
     },
     getCurrentWeather() {
       let self = this;
-      let api = `http://api.openweathermap.org/data/2.5/weather?id=${
-        this.location_id
-      }&units=metric&appid=${this.appid}`;
+      let api = `http://api.openweathermap.org/data/2.5/weather?id=${this.location_id}&units=metric&appid=${this.appid}`;
       this.axios
         .get(api)
         .then(response => {
@@ -55,50 +64,48 @@ export default {
           console.log(error);
         });
     },
-    changeTextSize(){
+    changeTextSize() {
       let data = this.$refs.textLenght.innerText;
-      data.lenght
-      return
-
+      data.lenght;
+      return;
     }
   },
   mounted() {
     this.getCurrentWeather();
-
   }
 };
 </script>
 
 <style lang="scss" scoped>
-.weather-current-container__outer{
+.weather-current-container__outer {
   display: inline-block;
   margin: 0 auto;
   width: 100%;
   max-width: 300px;
 }
-.weather-current__description-container{
+.weather-current__description-container {
   display: flex;
   flex-wrap: nowrap;
   flex-direction: row;
   align-items: center;
 }
-.weather-current__description-image{
+.weather-current__description-image {
   width: 50px;
   margin-right: 10px;
 }
-.weather-current__description-title{
-    margin: 0;
-    font-size: 20px;
-    color: #fff;
+.weather-current__description-title {
+  margin: 0;
+  font-size: 20px;
+  color: #fff;
 }
-.weather-current__temp-container{
+.weather-current__temp-container {
   display: flex;
   flex-wrap: nowrap;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
 }
-.weather-current__temp-now{
+.weather-current__temp-now {
   margin: 0;
   font-size: 160px;
   color: #fff;
@@ -107,16 +114,15 @@ export default {
   text-align: right;
   margin-right: 10px;
   line-height: 1;
-  &:after{
-    content:'o';
+  &:after {
+    content: "o";
     position: absolute;
     top: 10px;
     right: -5px;
     font-size: 40px;
-
   }
 }
-.weather-current__temp-extra-container{
+.weather-current__temp-extra-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -124,22 +130,21 @@ export default {
   margin-right: 10px;
 }
 .weather-current__temp-exta-min,
-.weather-current__temp-extra-max{
+.weather-current__temp-extra-max {
   margin: 0;
   font-size: 24px;
   color: #fff;
 }
-.weather-current__temp-exta-min{
+.weather-current__temp-exta-min {
   padding-bottom: 5px;
   border-bottom: 2px solid #fff;
 }
-.weather-current__temp-extra-max{
+.weather-current__temp-extra-max {
   margin-top: 5px;
 }
 
-.temp_symbol{
+.temp_symbol {
   font-size: 100px;
   line-height: 0.5;
 }
-
 </style>

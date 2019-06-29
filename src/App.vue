@@ -4,7 +4,7 @@
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
     </div>-->
-    <router-view/>
+    <router-view />
   </div>
 </template>
 
@@ -19,7 +19,7 @@
   color: #2c3e50;
   width: 100vw;
   height: auto;
-  overflow-X: hidden;
+  overflow-x: hidden;
   margin: 0;
   padding: 0;
   box-sizing: border-box;

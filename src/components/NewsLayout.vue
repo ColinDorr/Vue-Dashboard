@@ -1,31 +1,48 @@
 <template>
   <div class="news-container__outer">
     <ul class="news-articles__list" v-if="newsItems">
-      <li v-for="(item,index) in newsItems" class="news-articles__list-item-container">
+      <li
+        v-for="(item, index) in newsItems"
+        class="news-articles__list-item-container"
+      >
         <a :href="item.url" target="_blank" class="news-articles__list-item">
           <div class="news-article__image-container">
-            <img class="news-article__image" v-if="item.image" :src="item.image">
+            <img
+              class="news-article__image"
+              v-if="item.image"
+              :src="item.image"
+            />
             <img
               class="news-article__image"
               v-else-if="item.source === 'Nu.nl'"
               src="@/assets/fallback-images/no-image-nu.jpg"
-            >
+            />
             <img
               class="news-article__image"
               v-else-if="item.source === 'HackerNews'"
               src="@/assets/fallback-images/no-image-hn.jpg"
-            >
+            />
             <img
               class="news-article__image"
               v-else-if="item.source === 'r/FloridaMan'"
               src="@/assets/fallback-images/no-image-red.jpg"
-            >
-            <img class="news-article__image" v-else src="@/assets/fallback-images/no-image.jpg">
+            />
+            <img
+              class="news-article__image"
+              v-else
+              src="@/assets/fallback-images/no-image.jpg"
+            />
           </div>
           <div class="news-article__data-container">
-            <p class="news-article__item-meta">{{item.date}} - {{item.source}}</p>
-            <h4 class="news-article__item-title" v-if="item.title">{{item.title}}</h4>
-            <p class="news-article__item-description" v-if="item.description">{{item.description}}</p>
+            <p class="news-article__item-meta">
+              {{ item.date }} - {{ item.source }}
+            </p>
+            <h4 class="news-article__item-title" v-if="item.title">
+              {{ item.title }}
+            </h4>
+            <p class="news-article__item-description" v-if="item.description">
+              {{ item.description }}
+            </p>
           </div>
         </a>
       </li>
@@ -92,7 +109,7 @@ export default {
   width: 200px;
   height: 100px;
   display: none;
-  @include tablet{
+  @include tablet {
     display: block;
   }
 }
@@ -110,10 +127,9 @@ export default {
   border-left: 6px solid $color-light-blue;
   width: 100%;
   box-sizing: border-box;
-  @include tablet{
+  @include tablet {
     width: calc(100% - 30% - 20px);
   }
-  
 }
 .news-article__item-meta {
   text-align: left;
@@ -131,7 +147,6 @@ export default {
   color: rgb(1, 0, 80);
   max-height: 38px;
   @include limit-lines(2);
-
 }
 .news-article__item-description {
   text-align: left;
