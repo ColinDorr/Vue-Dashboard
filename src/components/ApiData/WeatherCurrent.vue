@@ -6,20 +6,20 @@
         :imageName="imageName"
       ></WeatherIcons>
       <h2 class="weather-current__description-title">
-        {{ currentWeatherData.weather[0].main }}
+        {{ $store.state.currentWeatherData.weather[0].main }}
       </h2>
     </div>
 
     <div class="weather-current__temp-container">
       <p class="weather-current__temp-now">
-        {{ makeRoundNumber(currentWeatherData.main.temp) }}
+        {{ makeRoundNumber($store.state.currentWeatherData.main.temp) }}
       </p>
       <div class="weather-current__temp-extra-container">
         <p class="weather-current__temp-exta-min">
-          {{ makeRoundNumber(currentWeatherData.main.temp_min) }}&deg;
+          {{ makeRoundNumber($store.state.currentWeatherData.main.temp_min) }}&deg;
         </p>
         <p class="weather-current__temp-extra-max">
-          {{ makeRoundNumber(currentWeatherData.main.temp_max) }}&deg;
+          {{ makeRoundNumber($store.state.currentWeatherData.main.temp_max) }}&deg;
         </p>
       </div>
     </div>
@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import WeatherIcons from "@/components/ApiData/WeatherIcons.vue";
+import WeatherIcons from "@/components/helpers/WeatherIcons.vue";
 
 export default {
   name: "WeatherCurrent",
@@ -36,7 +36,6 @@ export default {
   },
   data() {
     return {
-      currentWeatherData: [],
       location_id: 2759794,
       appid: process.env.VUE_APP_WEATHER_API_KEY,
       imageName: ""
@@ -57,17 +56,12 @@ export default {
       this.axios
         .get(api)
         .then(response => {
-          this.currentWeatherData = response.data;
+          this.$store.state.currentWeatherData = response.data;
           this.getMatchinImage(response.data.weather[0].icon);
         })
         .catch(error => {
           console.log(error);
         });
-    },
-    changeTextSize() {
-      let data = this.$refs.textLenght.innerText;
-      data.lenght;
-      return;
     }
   },
   mounted() {
@@ -111,14 +105,16 @@ export default {
   color: #fff;
   position: relative;
   width: 185px;
+  height: 130px;
+  overflow: hidden;
   text-align: right;
-  margin-right: 10px;
+  padding-right: 25px;
   line-height: 1;
   &:after {
     content: "o";
     position: absolute;
-    top: 10px;
-    right: -5px;
+    top: -10px;
+    right: -10;
     font-size: 40px;
   }
 }

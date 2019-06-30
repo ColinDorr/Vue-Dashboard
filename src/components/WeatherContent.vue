@@ -6,15 +6,16 @@
 
     <WeatherForecast></WeatherForecast>
 
+    <WeatherDetails></WeatherDetails>
+
     <WeatherRain></WeatherRain>
   </div>
 </template>
 
 <script>
 import WeatherCurrent from "@/components/ApiData/WeatherCurrent.vue";
-
 import WeatherForecast from "@/components/ApiData/WeatherForecast.vue";
-
+import WeatherDetails from "@/components/ApiData/WeatherDetails.vue";
 import WeatherRain from "@/components/ApiData/WeatherRain.vue";
 
 export default {
@@ -22,6 +23,7 @@ export default {
   components: {
     WeatherCurrent,
     WeatherForecast,
+    WeatherDetails,
     WeatherRain
   },
   data() {
@@ -37,6 +39,9 @@ export default {
   background: $background-blue-pink;
   @include tablet {
     width: 300px;
+  }
+  > div{
+    margin-bottom: 40px;
   }
 }
 .weather-content__title-location {

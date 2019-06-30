@@ -2,14 +2,14 @@
   <div class="weather-forecast-container__outer">
     <ul class="weather-forecast__list">
       <li
-        v-for="(item, index) in forecastWeatherData.list"
+        v-for="(item, index) in $store.state.forecastWeatherData.list"
         class="weather-forecast__list-item"
       >
         <div class="weather-forecast__item-day">
           <p class="item-day">{{ getTime(item.dt) }}</p>
           <WeatherIcons
             class="weather-forecast__item-image"
-            :imageName="forecastWeatherImages[index]"
+            :imageName="$store.state.forecastWeatherImages[index]"
           ></WeatherIcons>
           <p class="item-max">{{ makeRoundNumber(item.temp.max) }}&#176;</p>
           <p class="item-min">{{ makeRoundNumber(item.temp.min) }}&#176;</p>
@@ -20,14 +20,12 @@
 </template>
 
 <script>
-import WeatherIcons from "@/components/ApiData/WeatherIcons.vue";
+import WeatherIcons from "@/components/helpers/WeatherIcons.vue";
 
 export default {
   name: "WeatherForecast",
   data() {
     return {
-      forecastWeatherData: [],
-      forecastWeatherImages: [],
       location_id: 2759794,
       appid: process.env.VUE_APP_WEATHER_API_KEY,
       imageName: ""
@@ -61,7 +59,7 @@ export default {
       this.axios
         .get(api)
         .then(response => {
-          this.forecastWeatherData = response.data;
+          this.$store.state.forecastWeatherData = response.data;
           this.getForecastImageArray(response.data);
         })
         .catch(error => {
@@ -74,7 +72,7 @@ export default {
       data.list.forEach(function(element) {
         iconContainer.push(self.getMatchinImage(element.weather[0].icon));
       });
-      this.forecastWeatherImages = iconContainer;
+     this.$store.state.forecastWeatherImages = iconContainer;
     }
   },
   mounted() {
