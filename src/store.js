@@ -5,10 +5,14 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    currentWeatherData: [],
-    forecastWeatherData: [],
-    forecastWeatherImages: [],
+    currentWeatherData: null,
+    rainWeatherData: null,
+    forecastWeatherData: null,
+    forecastWeatherImages: null
+    
   },
   mutations: {},
-  actions: {}
+  actions: {
+
+  }
 });

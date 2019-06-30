@@ -27,6 +27,7 @@
 </template>
 
 <script>
+
 import WeatherIcons from "@/components/helpers/WeatherIcons.vue";
 
 export default {
@@ -36,36 +37,25 @@ export default {
   },
   data() {
     return {
-      location_id: 2759794,
-      appid: process.env.VUE_APP_WEATHER_API_KEY,
       imageName: ""
     };
   },
-  computed: {},
-  methods: {
+  props:{
+    currentData : {
+      type : Object,
+      required: true
+    }
+  },
+  methods:{
     makeRoundNumber(data) {
       return Math.round(data);
     },
-    getMatchinImage(data) {
-      let dataContainer = data.split(" ").join("_");
-      this.imageName = dataContainer;
-    },
-    getCurrentWeather() {
-      let self = this;
-      let api = `http://api.openweathermap.org/data/2.5/weather?id=${this.location_id}&units=metric&appid=${this.appid}`;
-      this.axios
-        .get(api)
-        .then(response => {
-          this.$store.state.currentWeatherData = response.data;
-          this.getMatchinImage(response.data.weather[0].icon);
-        })
-        .catch(error => {
-          console.log(error);
-        });
+    getMatchinImage() {
+      this.imageName = this.currentData.weather[0].icon;
     }
   },
-  mounted() {
-    this.getCurrentWeather();
+  mounted(){
+    this.getMatchinImage();
   }
 };
 </script>
@@ -105,7 +95,7 @@ export default {
   color: #fff;
   position: relative;
   width: 185px;
-  height: 130px;
+  height: 135px;
   overflow: hidden;
   text-align: right;
   padding-right: 25px;

@@ -104,12 +104,11 @@ export default {
 }
 
 .news-article__image-container {
-  display: block;
   position: relative;
   width: 200px;
   height: 100px;
   display: none;
-  @include tablet {
+  @include desktop {
     display: block;
   }
 }
@@ -127,8 +126,8 @@ export default {
   border-left: 6px solid $color-light-blue;
   width: 100%;
   box-sizing: border-box;
-  @include tablet {
-    width: calc(100% - 30% - 20px);
+  @include desktop {
+    width: calc(100% - 200px - 20px)
   }
 }
 .news-article__item-meta {

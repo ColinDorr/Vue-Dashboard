@@ -51,9 +51,6 @@
     components: {
       WeatherDetailIcons
     },
-    data() {
-      return {};
-    },
     computed: {
       currentWeatherData() {
         return this.$store.state.currentWeatherData;
@@ -108,8 +105,7 @@
           return "N";
         }
       }
-    },
-    mounted() {}
+    }
   };
 </script>
 
@@ -130,10 +126,10 @@
   }
 
   .weather-details__header__title {
-    font-size: 16px;
+    font-size: 12px;
     color: #fff;
     margin: 0;
-    padding-right: 20px;
+    padding-right: 15px;
     font-weight: normal;
     text-transform: uppercase
   }
