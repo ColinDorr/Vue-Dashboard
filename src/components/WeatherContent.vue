@@ -20,7 +20,7 @@
 </template>
 
 <script>
-  import WeatherAPI from "../services/api/WeatherAPI.js";
+  import WeatherAPI from "@/services/api/WeatherAPI.js";
 
   import WeatherCurrent from "@/components/ApiData/WeatherCurrent.vue";
   import WeatherForecast from "@/components/ApiData/WeatherForecast.vue";

@@ -8,8 +8,12 @@ export default new Vuex.Store({
     currentWeatherData: null,
     rainWeatherData: null,
     forecastWeatherData: null,
-    forecastWeatherImages: null
-    
+    forecastWeatherImages: null,
+
+    nuNewsData: null,
+    hackerNewsIDs: null,
+    hackerNewsData: null,
+    floridaManNewsData: null
   },
   mutations: {},
   actions: {
