@@ -123,6 +123,7 @@
     flex-wrap: nowrap;
     position: relative;
     align-items: center;
+    margin-bottom: 10px;
   }
 
   .weather-details__header__title {
@@ -147,7 +148,6 @@
     flex-direction: row;
     margin: 0;
     padding: 0;
-    margin-top: 10px;
   }
 
   .weather-details__detail-block {
