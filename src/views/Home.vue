@@ -3,15 +3,18 @@
     <div class="grid-container">
       <WeatherContent></WeatherContent>
 
-      <Nav></Nav>
+      <Bookmarks></Bookmarks>
 
-      <NewsContent></NewsContent>
+      <!-- <Nav></Nav> -->
+
+      <!-- <NewsContent></NewsContent> -->
     </div>
   </div>
 </template>
 
 <script>
 import Nav from "@/components/NavElement.vue";
+import Bookmarks from "@/components/bookmarks/Bookmarks.vue";
 
 import WeatherContent from "@/components/WeatherContent.vue";
 
@@ -21,6 +24,7 @@ export default {
   name: "home",
   components: {
     Nav,
+    Bookmarks,
     WeatherContent,
     NewsContent
   }

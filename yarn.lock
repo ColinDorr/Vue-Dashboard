@@ -667,6 +667,11 @@
     lodash "^4.17.11"
     to-fast-properties "^2.0.0"
 
+"@glidejs/glide@^3.2.4", "@glidejs/glide@^3.3.0":
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/@glidejs/glide/-/glide-3.3.0.tgz#5d0a0cddad863a66272a15826919c64c60351094"
+  integrity sha512-8rs4yGHRlCOvubBM7RyB4sijzl0q5ST7Yvv9frSb8xIRWdztoY7lP/uMMc9GBEM0up5MvxIYWOXig1b5gT/j2A==
+
 "@hapi/address@2.x.x":
   version "2.0.0"
   resolved "https://registry.npm.taobao.org/@hapi/address/download/@hapi/address-2.0.0.tgz#9f05469c88cb2fd3dcd624776b54ee95c312126a"
@@ -8289,6 +8294,14 @@ vue-eslint-parser@^5.0.0:
     esquery "^1.0.1"
     lodash "^4.17.11"
 
+vue-glide-js@^1.3.12:
+  version "1.3.12"
+  resolved "https://registry.yarnpkg.com/vue-glide-js/-/vue-glide-js-1.3.12.tgz#bbbcc9f3e6b3b37776b4e90be11bb0acb24d7abf"
+  integrity sha512-YrANw1SAkms7NUSYIfmzqzOM877XpfJbbXZmki58/HUPKsywRgMeBfsR8Ir8cLW6WmI1rQM/tq1+baepF6Dg8w==
+  dependencies:
+    "@glidejs/glide" "^3.2.4"
+    vue "^2.5.16"
+
 vue-hot-reload-api@^2.3.0:
   version "2.3.3"
   resolved "https://registry.npm.taobao.org/vue-hot-reload-api/download/vue-hot-reload-api-2.3.3.tgz#2756f46cb3258054c5f4723de8ae7e87302a1ccf"
@@ -8331,7 +8344,7 @@ vue-template-es2015-compiler@^1.9.0:
   resolved "https://registry.npm.taobao.org/vue-template-es2015-compiler/download/vue-template-es2015-compiler-1.9.1.tgz#1ee3bc9a16ecbf5118be334bb15f9c46f82f5825"
   integrity sha1-HuO8mhbsv1EYvjNLsV+cRvgvWCU=
 
-vue@^2.6.10:
+vue@^2.5.16, vue@^2.6.10:
   version "2.6.10"
   resolved "https://registry.npm.taobao.org/vue/download/vue-2.6.10.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fvue%2Fdownload%2Fvue-2.6.10.tgz#a72b1a42a4d82a721ea438d1b6bf55e66195c637"
   integrity sha1-pysaQqTYKnIepDjRtr9V5mGVxjc=

@@ -6,9 +6,11 @@ import store from "./store";
 import axios from "axios";
 import VueAxios from "vue-axios";
 
+import VueGlide from "vue-glide-js";
+import "vue-glide-js/dist/vue-glide.css";
 
+Vue.use(VueGlide);
 Vue.use(VueAxios, axios);
-
 
 Vue.config.productionTip = process.env.NODE_ENV === "production";
 
