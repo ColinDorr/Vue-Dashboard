@@ -2,28 +2,22 @@
   <div class="home">
     <div class="grid-container">
       <WeatherContent></WeatherContent>
-
-      <Bookmarks></Bookmarks>
-
-      <!-- <Nav></Nav> -->
-
-      <!-- <NewsContent></NewsContent> -->
+      <div class="app-contont">
+          <Bookmarks></Bookmarks>
+          <NewsContent></NewsContent>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import Nav from "@/components/NavElement.vue";
 import Bookmarks from "@/components/bookmarks/Bookmarks.vue";
-
 import WeatherContent from "@/components/WeatherContent.vue";
-
 import NewsContent from "@/components/NewsContent.vue";
 
 export default {
   name: "home",
   components: {
-    Nav,
     Bookmarks,
     WeatherContent,
     NewsContent
@@ -40,5 +34,14 @@ export default {
   display: flex;
   justify-content: flex-start;
   flex-wrap: wrap;
+}
+.app-contont{
+  width: 100%;
+  @include tablet{
+    width: calc(100% - 300px - 40px);
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+  }
 }
 </style>

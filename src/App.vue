@@ -1,9 +1,15 @@
 <template>
   <div id="app">
-    <!-- <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>-->
+            <div class="app-controls">
+              <div class="loaction-controls">
+                <button><</button>
+                <button>></button>
+                </div>
+                <div class="reload-controls">
+                   <button>Reload (R)</button>
+                  </div>
+         
+        </div>
     <router-view />
   </div>
 </template>
@@ -23,6 +29,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  background: $background-blue-pink;
 }
 
 #nav {
@@ -43,5 +50,34 @@ h4 {
 }
 p {
   margin: 0;
+}
+
+.app-controls{
+  height: 60px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0 20px;
+  .loaction-controls{
+    margin-right: 20px;
+  }
+  .loaction-controls,
+  .reload-controls{
+    display: flex;
+    align-items: center;
+    color: white;
+    button{
+       color: white;
+      border: none;
+      background: none;
+      border-radius: 0;
+      padding: 10px 10px;
+      margin-right: 10px;
+      background: rgba(255, 255, 255, 0.1);
+      &:last-of-type{
+        margin-right: 0;
+      }
+    }
+  }
 }
 </style>
